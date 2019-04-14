@@ -2,14 +2,17 @@ package app;
 
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Setter
-public class Node {
+class Node {
 
-    Integer integer;
-    List<Integer> linkedNodes = new ArrayList<>();
+    private Integer integer;
+    private Set<Integer> links = new HashSet<>();
 
+    boolean addLink(int i) {
+        return links.add(i);
+    }
 
 }
