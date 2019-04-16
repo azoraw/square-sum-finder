@@ -1,18 +1,24 @@
 package app;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
 import java.util.Set;
 
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Setter
-class Node {
+@Getter
+public class Node {
 
-    private Integer integer;
-    private Set<Integer> links = new HashSet<>();
+    private final Integer value;
+    private Set<Node> edges;
 
-    boolean addLink(int i) {
-        return links.add(i);
+    boolean addNode(Node newNode) {
+        newNode.getEdges().add(this);
+        return edges.add(newNode);
     }
 
 }

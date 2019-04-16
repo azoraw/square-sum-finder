@@ -7,8 +7,7 @@ class SquareNumbers {
 
     private Set<Integer> squares;
 
-    void createPossibleSquareNumbers(int n) {
-
+    SquareNumbers(int n) {
         Set<Integer> squares = new HashSet<>();
         int highestIndex = (int) Math.sqrt(2 * n - 1);
 
@@ -19,7 +18,8 @@ class SquareNumbers {
         this.squares = squares;
     }
 
-    boolean isSquare(int number) {
+     boolean isSquare(int number) {
         return squares.contains(number);
     }
+
 }
