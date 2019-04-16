@@ -3,27 +3,30 @@ package app;
 import app.hamilton.DFS;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Main {
 
-    private static final int n = 50;
+    private static final int n = 300;
 
     public static void main(String[] args) {
         DFS dfs = new DFS();
 
-        for(int i = 2; i<= n; i++) {
+        for (int i = 2; i <= n; i++) {
             Set<Node> graph = initGraph(i);
+            System.out.println();
             System.out.println("path for n = " + i + " is:");
-            System.out.println(dfs.findPath(graph));
+            long startTime = System.currentTimeMillis();
+            String path = dfs.findPath(graph);
+            System.out.println(path);
+            long endTime = System.currentTimeMillis();
+            System.out.println("finding path " + i +" took :  " + (endTime - startTime) + " milliseconds");
         }
-
     }
 
     private static Set<Node> initGraph(int n) {
         SquareNumbers squareNumbers = new SquareNumbers(n);
-        Set<Node> graph = new LinkedHashSet<>();
+        Set<Node> graph = new HashSet<>();
 
         graph.add(new Node(1, new HashSet<>(), false));
 

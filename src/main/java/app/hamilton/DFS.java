@@ -2,6 +2,7 @@ package app.hamilton;
 
 import app.Node;
 
+import java.util.Comparator;
 import java.util.Set;
 import java.util.Stack;
 
@@ -12,46 +13,34 @@ public class DFS {
     private boolean found;
 
     public String findPath(Set<Node> nodes) {
-        if (canNotHavePath(nodes)) {
-            return "impossible";
-        }
-
         n = nodes.size();
         stack = new Stack<>();
         found = false;
 
-        for (Node node : nodes) {
-            dfs(node);
-            if (found) {
-               break;
-            }
-        }
+        Node initNode = nodes.stream()
+                .max(Comparator.comparing(node -> node.getEdges().size()))
+                .orElseThrow(RuntimeException::new);
 
-        return found ? "" : "not found";
+        dfs(initNode);
+
+        return found ? "and is beautiful" : "not found";
     }
 
-    private void dfs(Node startNode) {
-        stack.push(startNode);
+    private void dfs(Node node) {
+        stack.push(node);
         if (stack.size() < n || found) {
-            startNode.setVisited(true);
-            for (Node node : startNode.getEdges()) {
-                if (!node.isVisited()) {
-                    dfs(node);
+            node.setVisited(true);
+            for (Node neighbour : node.getEdges()) {
+                if (!neighbour.isVisited()) {
+                    dfs(neighbour);
                 }
             }
-            startNode.setVisited(false);
+            node.setVisited(false);
         } else {
             found = true;
             System.out.println(stack.toString());
+            System.exit(0);
         }
         stack.pop();
     }
-
-    private boolean canNotHavePath(Set<Node> nodes) {
-        return nodes.stream()
-                .filter(node -> node.getEdges().size() < 2)
-                .count() > 2;
-
-    }
-
 }
