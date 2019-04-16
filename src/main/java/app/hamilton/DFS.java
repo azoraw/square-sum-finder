@@ -9,7 +9,7 @@ public class DFS {
 
     private Stack<Node> stack;
     private int n;
-    boolean found;
+    private boolean found;
 
     public String findPath(Set<Node> nodes) {
         if (canNotHavePath(nodes)) {
@@ -27,13 +27,12 @@ public class DFS {
             }
         }
 
-
         return found ? "" : "not found";
     }
 
     private void dfs(Node startNode) {
         stack.push(startNode);
-        if (stack.size() < n) {
+        if (stack.size() < n || found) {
             startNode.setVisited(true);
             for (Node node : startNode.getEdges()) {
                 if (!node.isVisited()) {
