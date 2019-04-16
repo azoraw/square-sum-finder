@@ -1,9 +1,6 @@
 package app;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
@@ -15,10 +12,16 @@ public class Node {
 
     private final Integer value;
     private Set<Node> edges;
+    private boolean visited = false;
 
     boolean addNode(Node newNode) {
         newNode.getEdges().add(this);
         return edges.add(newNode);
+    }
+
+    @Override
+    public String toString() {
+        return value.toString();
     }
 
 }

@@ -1,31 +1,34 @@
 package app;
 
-import app.hamilton.BruteForce;
+import app.hamilton.DFS;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Main {
 
-    private static final int n = 6;
+    private static final int n = 50;
 
     public static void main(String[] args) {
-        Set<Node> graph = initGraph();
+        DFS dfs = new DFS();
 
-        BruteForce bruteForce = new BruteForce();
-        String path = bruteForce.findPath(graph);
-        System.out.println("path for n = " + n + " is " + path);
+        for(int i = 2; i<= n; i++) {
+            Set<Node> graph = initGraph(i);
+            System.out.println("path for n = " + i + " is:");
+            System.out.println(dfs.findPath(graph));
+        }
 
     }
 
-    private static Set<Node> initGraph() {
+    private static Set<Node> initGraph(int n) {
         SquareNumbers squareNumbers = new SquareNumbers(n);
-        Set<Node> graph = new HashSet<>();
+        Set<Node> graph = new LinkedHashSet<>();
 
-        graph.add(new Node(1, new HashSet<>()));
+        graph.add(new Node(1, new HashSet<>(), false));
 
         for (int i = 2; i <= n; i++) {
-            Node newNode = new Node(i, new HashSet<>());
+            Node newNode = new Node(i, new HashSet<>(), false);
 
             graph.stream()
                     .filter(node -> squareNumbers.isSquare(newNode.getValue() + node.getValue()))
