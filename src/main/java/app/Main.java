@@ -1,6 +1,7 @@
 package app;
 
 import app.hamilton.DFS;
+import app.hamilton.Peek;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
         DFS dfs = new DFS();
-
+        Peek peek = new Peek(dfs);
+        peek.start();
         for (int i = 2; i <= n; i++) {
             Set<Node> graph = initGraph(i);
             System.out.println();

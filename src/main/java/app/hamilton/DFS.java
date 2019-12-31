@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class DFS {
 
-    private Stack<Node> stack;
+    public Stack<Node> stack;
     private int n;
     private boolean found;
 
@@ -23,7 +23,7 @@ public class DFS {
 
         dfs(initNode);
 
-        return found ? "and is beautiful" : "not found";
+        return found ? "and is beautiful\n" : "not found";
     }
 
     private void dfs(Node node) {
@@ -38,8 +38,7 @@ public class DFS {
             node.setVisited(false);
         } else {
             found = true;
-            System.out.println(stack.toString());
-            System.exit(0);
+            System.out.println("result: " + stack.toString() +"\n\n");
         }
         stack.pop();
     }
