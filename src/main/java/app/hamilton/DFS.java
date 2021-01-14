@@ -1,7 +1,5 @@
 package app.hamilton;
 
-import app.Node;
-
 import java.util.Comparator;
 import java.util.Set;
 import java.util.Stack;

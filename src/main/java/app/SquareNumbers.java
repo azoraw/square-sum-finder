@@ -3,11 +3,11 @@ package app;
 import java.util.HashSet;
 import java.util.Set;
 
-class SquareNumbers {
+public class SquareNumbers {
 
-    private Set<Integer> squares;
+    private final Set<Integer> squares;
 
-    SquareNumbers(int n) {
+    public SquareNumbers(int n) {
         Set<Integer> squares = new HashSet<>();
         int highestIndex = (int) Math.sqrt(2 * n - 1);
 
@@ -18,7 +18,7 @@ class SquareNumbers {
         this.squares = squares;
     }
 
-     boolean isSquare(int number) {
+     public boolean isSquare(int number) {
         return squares.contains(number);
     }
 

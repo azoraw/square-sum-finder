@@ -1,7 +1,6 @@
-package app;
+package app.hamilton;
 
-import app.hamilton.DFS;
-import app.hamilton.Peek;
+import app.SquareNumbers;
 
 import java.util.HashSet;
 import java.util.Set;

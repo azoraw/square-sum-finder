@@ -8,7 +8,7 @@ class SquareNumbersTest extends Specification {
         given:
         def numbers = new SquareNumbers(10)
 
-        then:
+        expect:
         numbers.squares == [1, 4, 9, 16] as Set
     }
 }
